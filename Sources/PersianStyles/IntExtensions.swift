@@ -6,7 +6,7 @@
 //
 
 
-
+import Foundation
 
 
 extension Int {
@@ -63,7 +63,7 @@ extension Int {
             currentCurrency = currency
         }else{
             
-            let currencyString = UserDefaults.standard.string(forKey: Keys.currency.rawValue)
+            let currencyString = UserDefaults.standard.string(forKey: Currency.rial.rawValue)
             
             if let currencyString {
                 

@@ -5,7 +5,7 @@
 //  Created by MohammavDev on 1/7/25.
 //
 
-
+import Foundation
 extension Double {
     func persianFormat(_ currency : Currency? = nil,withSymbol : Bool = true) -> String{
         var currentCurrency : Currency
@@ -13,7 +13,7 @@ extension Double {
             currentCurrency = currency
         }else{
             
-            let currencyString = UserDefaults.standard.string(forKey: Keys.currency.rawValue)
+            let currencyString = UserDefaults.standard.string(forKey: Currency.rial.rawValue)
             
             if let currencyString {
                 
