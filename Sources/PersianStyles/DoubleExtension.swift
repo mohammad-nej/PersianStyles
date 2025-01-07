@@ -6,7 +6,7 @@
 //
 
 import Foundation
-extension Double {
+public extension Double {
     func persianFormat(_ currency : Currency? = nil,withSymbol : Bool = true) -> String{
         var currentCurrency : Currency
         if let currency{

@@ -7,14 +7,14 @@
 
 import Foundation
 
-let persianCalander : Calendar = {
+public let persianCalander : Calendar = {
     var calendar = Calendar(identifier: .persian)
     calendar.locale = .init(identifier: "fa_IR")
     
     return calendar
 }()
 
-let persianFormatter: DateFormatter = {
+public let persianFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.calendar = persianCalander
     
@@ -23,11 +23,11 @@ let persianFormatter: DateFormatter = {
     return formatter
 }()
 
-let daysago : Date! = persianCalander.date(byAdding: .day, value: -3, to: Date())
-let monthsago : Date! = persianCalander.date(byAdding: .month, value: -2, to: Date())
-let yearsago  : Date! = persianCalander.date(byAdding: .year, value: -5, to: Date())
+public let daysago : Date! = persianCalander.date(byAdding: .day, value: -3, to: Date())
+public let monthsago : Date! = persianCalander.date(byAdding: .month, value: -2, to: Date())
+public let yearsago  : Date! = persianCalander.date(byAdding: .year, value: -5, to: Date())
 
-let persianDateFormatter : DateFormatter = {
+public let persianDateFormatter : DateFormatter = {
     var formatter = DateFormatter()
     formatter.dateStyle = .short
     formatter.timeStyle = .none
@@ -38,7 +38,7 @@ let persianDateFormatter : DateFormatter = {
     return formatter
 }()
 
-let fullDateFormatter : DateFormatter = {
+public let fullDateFormatter : DateFormatter = {
     
     var formatter = DateFormatter()
     formatter.dateFormat = "MM/dd - HH:mm"
@@ -48,7 +48,7 @@ let fullDateFormatter : DateFormatter = {
     
 }()
 
-extension Date {
+public extension Date {
     
     var  inPersionFormat : String {
         return persianFormatter.string(from: self)
@@ -64,7 +64,7 @@ extension Date {
     
 }
 
-extension Date {
+public extension Date {
     
     static var currentYear : Int{
         
@@ -94,7 +94,7 @@ extension Date {
         return resultDate
     }
 }
-extension Date {
+public extension Date {
     
     static var thisYearRange : ClosedRange<Date> {
         let dateRange: ClosedRange<Date> = {
@@ -126,7 +126,7 @@ extension Date {
     }
 }
 
-extension Date {
+public extension Date {
     
     var relativePersianString: String {
         

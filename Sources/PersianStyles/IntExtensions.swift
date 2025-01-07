@@ -9,7 +9,7 @@
 import Foundation
 
 
-extension Int {
+public extension Int {
     
     var persianNumberUnSeparated : String{
         let numberFormatter = NumberFormatter()
@@ -56,7 +56,7 @@ extension Int {
 
 }
 
-extension Int {
+public extension Int {
     func persianFormat(_ currency : Currency? = nil) -> String{
         var currentCurrency : Currency
         if let currency{

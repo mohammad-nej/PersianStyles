@@ -6,7 +6,7 @@
 //
 
 
-enum Currency: String , CaseIterable {
+public enum Currency: String , CaseIterable {
     case rial = "ریال"
     
     case toman = "تومان"
