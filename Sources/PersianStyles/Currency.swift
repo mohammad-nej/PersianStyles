@@ -11,7 +11,7 @@ public enum Currency: String , CaseIterable {
     
     case toman = "تومان"
     
-    static var refrenceCurrency : Self {
+    public static var refrenceCurrency : Self {
         .rial
     }
   
