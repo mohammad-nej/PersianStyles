@@ -5,7 +5,7 @@
 //  Created by MohammavDev on 1/7/25.
 //
 
-import OSLog
+import MyLogger
 
 
-let debugginLogger = Logger(subsystem: "PersianStyles", category: "Debug")
+let debugginLogger = Logger(subsystem: "PersianStyles", category: "Debug", enabled: false)
