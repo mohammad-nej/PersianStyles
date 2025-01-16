@@ -6,7 +6,11 @@
 //
 
 
-public enum Currency: String , CaseIterable {
+
+public enum Currency: String , CaseIterable , Identifiable , Equatable , Hashable{
+    public var id : String {
+        rawValue
+    }
     case rial = "ریال"
     
     case toman = "تومان"
@@ -15,5 +19,5 @@ public enum Currency: String , CaseIterable {
         .rial
     }
   
-  
+    
 }
