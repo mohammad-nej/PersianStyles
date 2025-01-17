@@ -8,4 +8,4 @@
 import MyLogger
 
 
-let debugginLogger = Logger(subsystem: "PersianStyles", category: "Debug", enabled: false)
+let logger = Logger(subsystem: "PersianStyles", category: "Debug", enabled: false)
