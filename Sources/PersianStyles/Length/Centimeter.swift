@@ -11,15 +11,7 @@ public struct Centimeter : OfflineUnit {
     fileprivate init(){
         
     }
-    
-    public static func convertToReferance(_ amount: Double) -> Double {
-        return amount
-    }
-    
-    public static func convertFromReferance(_ amount: Double) -> Double {
-        return amount
-    }
-    
+
     public typealias TypeUnit = Lenght
     
     
@@ -27,10 +19,7 @@ public struct Centimeter : OfflineUnit {
     public static let shortSymbol: String = "cm"
     
     public static let longSymbol: String = "centimeter"
-    
-    
-    
-    
+
 }
 public extension OfflineUnit where Self == Centimeter {
     static var cm : Self {

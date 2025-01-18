@@ -7,8 +7,8 @@
 import SwiftUI
 import Foundation
 
-@Observable
-public final class Converter<Referance : UnitType> {
+
+public struct Converter<Referance : UnitType>  : Sendable{
     
     
     
@@ -27,10 +27,10 @@ public final class Converter<Referance : UnitType> {
         return try await Task.detached(priority: .userInitiated) {
             
             
-            let toRefrenceAmount = try await type(of:sourceCurrency).convertTo(amount.value, in: date)
+            let toRefrenceAmount = try await type(of:sourceCurrency).convertToReferance(amount.value, in: date)
             
             
-            let converted = try await type(of:destinationCurrency).convertFrom(toRefrenceAmount, in: date)
+            let converted = try await type(of:destinationCurrency).convertFromReferance(toRefrenceAmount, in: date)
             return converted
         }.value
     }
@@ -43,7 +43,7 @@ public final class Converter<Referance : UnitType> {
         return try await Task.detached(priority: .userInitiated) {
             
             
-            let toRefrenceAmount = try await type(of:sourceCurrency).convertTo(amount.value, in: date)
+            let toRefrenceAmount = try await type(of:sourceCurrency).convertToReferance(amount.value, in: date)
             
             
             let converted =  type(of:destinationCurrency).convertFromReferance(toRefrenceAmount)
@@ -63,7 +63,7 @@ public final class Converter<Referance : UnitType> {
             let toRefrenceAmount = type(of:sourceCurrency).convertToReferance(amount.value)
             
             
-            let converted =  try await  type(of:destinationCurrency).convertFrom(toRefrenceAmount , in: date)
+            let converted =  try await  type(of:destinationCurrency).convertFromReferance(toRefrenceAmount , in: date)
             return converted
         }.value
     }

@@ -12,11 +12,13 @@ public struct Dollar : Sendable,OnlineUnit  {
         
     }
     
-    public static func convertTo(_ amount: Double, in date: Date) async throws -> Double {
+    ///Convert Dollar to Riyal
+    public static func convertToReferance(_ amount: Double, in date: Date) async throws -> Double {
         return try await amount * getRate(at: date)
     }
     
-    public static func convertFrom(_ amount: Double, in date: Date) async throws -> Double {
+    ///convert Riyal to Dollar
+    public static func convertFromReferance(_ amount: Double, in date: Date) async throws -> Double {
         return try await amount / getRate(at: date)
     }
     

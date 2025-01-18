@@ -10,6 +10,6 @@ import SwiftUI
 import Foundation
 
 public protocol OnlineUnit : Sendable, Unit where CalcType == Online {
-    static func convertTo(_ amount : Double , in : Date) async throws -> Double
-    static func convertFrom(_ amount : Double, in date : Date) async throws -> Double
+    static func convertToReferance(_ amount : Double , in date : Date) async throws -> Double
+    static func convertFromReferance(_ amount : Double, in date : Date) async throws -> Double
 }

@@ -15,3 +15,14 @@ public protocol OfflineUnit : Sendable, Unit where CalcType == Offline {
     ///Convert your amount from Referance currency
     static func convertFromReferance(_ amount : Double) -> Double
 }
+public extension OfflineUnit  where Self == TypeUnit.ReferenceUnit {
+    static func convertToReferance(_ amount : Double) -> Double {
+        return amount
+    }
+    
+    ///Convert your amount from Referance currency
+    static func convertFromReferance(_ amount : Double) -> Double{
+        return amount
+    }
+    
+}

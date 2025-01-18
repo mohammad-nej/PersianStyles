@@ -8,6 +8,7 @@
 public protocol DoubleProducer : Sendable {
     var value : Double { get }
 }
+
  extension Double : DoubleProducer {
      public var value : Double { self }
 }
