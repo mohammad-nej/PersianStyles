@@ -6,15 +6,15 @@
 //
 
 public struct Meter : OfflineUnit {
-    fileprivate init(){
+     init(){
         
     }
     
-    public static func convertToReferance(_ amount: Double) -> Double {
+    public   func convertToReferance(_ amount: Double) -> Double {
         return amount * 100
     }
     
-    public static func convertFromReferance(_ amount: Double) -> Double {
+    public   func convertFromReferance(_ amount: Double) -> Double {
         return amount / 100
     }
     
@@ -22,11 +22,11 @@ public struct Meter : OfflineUnit {
     
     
     
-    public static let shortSymbol: String = "m"
+    public   let shortSymbol: String = "m"
     
-    public static let longSymbol: String = "meter"
+    public   let longSymbol: String = "meter"
     
 }
 public extension OfflineUnit where Self == Meter {
-    static var meter : Meter { .init() }
+      static var meter : Meter { .init() }
 }

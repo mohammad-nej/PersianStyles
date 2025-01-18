@@ -66,7 +66,7 @@ public extension Date {
 
 public extension Date {
     
-    static var currentYear : Int{
+      var currentYear : Int{
         
         return persianCalander.component(.year, from: Date())
         
@@ -96,7 +96,7 @@ public extension Date {
 }
 public extension Date {
     
-    static var thisYearRange : ClosedRange<Date> {
+      var thisYearRange : ClosedRange<Date> {
         let dateRange: ClosedRange<Date> = {
             let calendar = persianCalander
             let currentYear = calendar.dateComponents([.year], from: Date())

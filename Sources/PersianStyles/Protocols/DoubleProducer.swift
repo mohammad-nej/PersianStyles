@@ -29,7 +29,7 @@ public extension DoubleProducer {
         let inPersian = converted.persianNumber
         
          
-         let symbol = type(of: to).longSymbol
+         let symbol =  to.longSymbol
          return "\(inPersian) \(withSymbols ? symbol : "")"
     }
     

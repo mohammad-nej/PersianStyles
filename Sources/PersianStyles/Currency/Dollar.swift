@@ -8,21 +8,21 @@ import Foundation
 public struct Dollar : Sendable,OnlineUnit  {
     public typealias TypeUnit = Currency
     
-    fileprivate init(){
+     init(){
         
     }
     
     ///Convert Dollar to Riyal
-    public static func convertToReferance(_ amount: Double, in date: Date) async throws -> Double {
+    public   func convertToReferance(_ amount: Double, in date: Date) async throws -> Double {
         return try await amount * getRate(at: date)
     }
     
     ///convert Riyal to Dollar
-    public static func convertFromReferance(_ amount: Double, in date: Date) async throws -> Double {
+    public   func convertFromReferance(_ amount: Double, in date: Date) async throws -> Double {
         return try await amount / getRate(at: date)
     }
     
-    static func getRate(at date: Date) async throws -> Double {
+      func getRate(at date: Date) async throws -> Double {
         return 800_000
     }
     
@@ -30,13 +30,13 @@ public struct Dollar : Sendable,OnlineUnit  {
     
   
     
-    public static let shortSymbol: String = "$"
+    public   let shortSymbol: String = "$"
     
-    public static let longSymbol: String = "دلار"
+    public   let longSymbol: String = "دلار"
     
 }
 public extension OnlineUnit where Self == Dollar{
-    static var dollar : Dollar {
+    static  var dollar : Dollar {
         return Dollar()
     }
 }

@@ -38,3 +38,7 @@ import Testing
     //let error = converter.convert(123, from: .cm, to: .dollar)
 }
 
+@Test func compileTimeError() {
+    let currencies : [AnyOfflineCurrency] = [.init(.rial) , .init(.toman)]
+    
+}

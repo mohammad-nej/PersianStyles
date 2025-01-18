@@ -27,10 +27,10 @@ public struct Converter<Referance : UnitType>  : Sendable{
         return try await Task.detached(priority: .userInitiated) {
             
             
-            let toRefrenceAmount = try await type(of:sourceCurrency).convertToReferance(amount.value, in: date)
+            let toRefrenceAmount = try await sourceCurrency.convertToReferance(amount.value, in: date)
             
             
-            let converted = try await type(of:destinationCurrency).convertFromReferance(toRefrenceAmount, in: date)
+            let converted = try await destinationCurrency.convertFromReferance(toRefrenceAmount, in: date)
             return converted
         }.value
     }
@@ -43,10 +43,10 @@ public struct Converter<Referance : UnitType>  : Sendable{
         return try await Task.detached(priority: .userInitiated) {
             
             
-            let toRefrenceAmount = try await type(of:sourceCurrency).convertToReferance(amount.value, in: date)
+            let toRefrenceAmount = try await sourceCurrency.convertToReferance(amount.value, in: date)
             
             
-            let converted =  type(of:destinationCurrency).convertFromReferance(toRefrenceAmount)
+            let converted =  destinationCurrency.convertFromReferance(toRefrenceAmount)
             return converted
         }.value
     }
@@ -60,10 +60,10 @@ public struct Converter<Referance : UnitType>  : Sendable{
         return try await Task.detached(priority: .userInitiated) {
             
             
-            let toRefrenceAmount = type(of:sourceCurrency).convertToReferance(amount.value)
+            let toRefrenceAmount = sourceCurrency.convertToReferance(amount.value)
             
             
-            let converted =  try await  type(of:destinationCurrency).convertFromReferance(toRefrenceAmount , in: date)
+            let converted =  try await  destinationCurrency.convertFromReferance(toRefrenceAmount , in: date)
             return converted
         }.value
     }
@@ -75,9 +75,9 @@ public struct Converter<Referance : UnitType>  : Sendable{
                                                 )  -> Double
     where  From.TypeUnit == Referance , To.TypeUnit == Referance {
         
-        let toRefrenceAmount = type(of:sourceCurrency).convertToReferance(amount.value)
+        let toRefrenceAmount = sourceCurrency.convertToReferance(amount.value)
         
-        let converted = type(of:destinationCurrency).convertFromReferance(toRefrenceAmount)
+        let converted = destinationCurrency.convertFromReferance(toRefrenceAmount)
         return converted
         
     }

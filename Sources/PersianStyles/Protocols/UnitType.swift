@@ -19,7 +19,7 @@ public enum Currency : UnitType {
 
 public extension UnitType {
     ///Print the output of this  function to get info about ReferenceUnit of this UnitType
-    static func info() -> String {
+      func info() -> String {
         "Reference Unit for \(Self.self) is \(Self.ReferenceUnit.self)"
     }
 }

@@ -8,7 +8,7 @@
 
 public struct Centimeter : OfflineUnit {
   
-    fileprivate init(){
+     init(){
         
     }
 
@@ -16,13 +16,13 @@ public struct Centimeter : OfflineUnit {
     
     
     
-    public static let shortSymbol: String = "cm"
+    public   let shortSymbol: String = "cm"
     
-    public static let longSymbol: String = "centimeter"
+    public   let longSymbol: String = "centimeter"
 
 }
 public extension OfflineUnit where Self == Centimeter {
-    static var cm : Self {
+    static   var cm : Self {
         return .init()
     }
 }

@@ -13,19 +13,19 @@ public struct Riyal : Sendable,OfflineUnit {
   
     
     
-    fileprivate init() {
+     init() {
         
     }
     public typealias TypeUnit = Currency
    
     public typealias CalcType = Offline
     
-    public static let shortSymbol: String = "ریال"
+    public let shortSymbol: String = "ریال"
     
-    public static let longSymbol: String = "ریال"
+    public let longSymbol: String = "ریال"
     
     public typealias Referance = Self
 }
 public extension OfflineUnit where Self == Riyal {
-    static var rial : Riyal { .init() }
+    static   var rial : Riyal { .init() }
 }
