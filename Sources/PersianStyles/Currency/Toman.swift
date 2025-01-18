@@ -11,9 +11,11 @@ import Foundation
 
 public struct Toman : Sendable,OfflineUnit {
   
+    public static let id: UUID = UUID()
+    
     public typealias TypeUnit = Currency
    
-     init() {
+     public init() {
         
     }
     public typealias CalcType = Offline

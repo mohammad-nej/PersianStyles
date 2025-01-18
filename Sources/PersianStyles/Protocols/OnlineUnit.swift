@@ -9,7 +9,7 @@
 import SwiftUI
 import Foundation
 
-public protocol OnlineUnit : Sendable, Unit where CalcType == Online {
+public protocol OnlineUnit : Sendable, Unit,Equatable, Identifiable where CalcType == Online {
       func convertToReferance(_ amount : Double , in date : Date) async throws -> Double
       func convertFromReferance(_ amount : Double, in date : Date) async throws -> Double
 }

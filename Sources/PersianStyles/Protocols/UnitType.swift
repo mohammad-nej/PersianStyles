@@ -5,7 +5,7 @@
 //  Created by MohammavDev on 1/16/25.
 //
 
-public protocol UnitType : Sendable {
+public protocol UnitType : Sendable , Equatable {
     associatedtype ReferenceUnit
 }
 

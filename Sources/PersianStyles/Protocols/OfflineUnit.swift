@@ -9,7 +9,7 @@
 import SwiftUI
 import Foundation
 
-public protocol OfflineUnit : Sendable, Unit where CalcType == Offline {
+public protocol OfflineUnit : Sendable, Unit , Equatable , Identifiable where CalcType == Offline {
      func convertToReferance(_ amount : Double) -> Double
     
     ///Convert your amount from Referance currency

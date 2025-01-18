@@ -6,9 +6,13 @@
 //
 import Foundation
 public struct Dollar : Sendable,OnlineUnit  {
+    public static let id: UUID = UUID()
+    
+
+    
     public typealias TypeUnit = Currency
     
-     init(){
+     public init(){
         
     }
     

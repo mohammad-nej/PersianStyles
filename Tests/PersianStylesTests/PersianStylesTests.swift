@@ -41,4 +41,18 @@ import Testing
 @Test func compileTimeError() {
     let currencies : [AnyOfflineCurrency] = [.init(.rial) , .init(.toman)]
     
+    let currentToman = Toman.toman
+    #expect(currentToman == Toman.toman)
+    
+    
+    let currentRial = Riyal.rial
+    #expect(currentRial == Riyal.rial)
+    
+    
+    let anyRiyal = AnyOffline(.rial)
+    #expect(.init(currentRial) == anyRiyal)
+    
+    #expect(currencies[0] != currencies[1])
+    #expect(currencies[1] == currencies[1])
+    #expect(currencies[0] == currencies[0])
 }

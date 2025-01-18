@@ -4,9 +4,12 @@
 //
 //  Created by MohammavDev on 1/16/25.
 //
-
+import Foundation
 public struct Meter : OfflineUnit {
-     init(){
+    
+    public static let id: UUID = UUID()
+    
+    public init(){
         
     }
     

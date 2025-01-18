@@ -11,9 +11,9 @@ import Foundation
 
 public struct Riyal : Sendable,OfflineUnit {
   
+    public static let id: UUID = UUID()
     
-    
-     init() {
+     public init() {
         
     }
     public typealias TypeUnit = Currency

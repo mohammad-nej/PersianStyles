@@ -10,8 +10,11 @@ import Foundation
 public typealias AnyOnlineCurrency = AnyOnline<Currency>
 
 public struct AnyOnline<TYPE : UnitType>: OnlineUnit  {
+  
+    public static var id : UUID { .init()}
     
     
+    public let id : UUID
     
     private let convertToFunc : @Sendable (Double,Date) async throws -> Double
     private let convertFromFunc : @Sendable (Double,Date) async throws -> Double
@@ -35,13 +38,22 @@ public struct AnyOnline<TYPE : UnitType>: OnlineUnit  {
     
     public init<ONLINE : OnlineUnit>(_ unit : ONLINE) where ONLINE.CalcType == Online  , ONLINE.TypeUnit == TYPE{
         
+        self.id = unit.id
+        
         self.convertToFunc = { double,date in
-            try await unit.convertToReferance(double, in: <#Date#>)
+            try await unit.convertToReferance(double, in: date)
         }
         self.convertFromFunc = { double,date in
-            try await unit.convertFromReferance(double, in: <#Date#>)
+            try await unit.convertFromReferance(double, in: date)
         }
         self.shortSymbol = unit.shortSymbol
         self.longSymbol = unit.longSymbol
     }
+}
+public extension AnyOnline {
+    
+    static func == (lhs: AnyOnline<TYPE>, rhs: AnyOnline<TYPE>) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
 }
