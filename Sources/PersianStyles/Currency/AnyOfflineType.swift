@@ -54,3 +54,15 @@ public extension AnyOffline {
     }
     
 }
+
+
+public extension AnyOfflineCurrency {
+    
+    static var toman : AnyOfflineCurrency {
+        .init(.toman)
+    }
+    static var rial : AnyOfflineCurrency {
+        .init(.rial)
+    }
+    
+}
