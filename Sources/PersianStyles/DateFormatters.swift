@@ -7,6 +7,9 @@
 
 import Foundation
 
+
+
+
 public let persianCalander : Calendar = {
     var calendar = Calendar(identifier: .persian)
     calendar.locale = .init(identifier: "fa_IR")
@@ -23,9 +26,9 @@ public let persianFormatter: DateFormatter = {
     return formatter
 }()
 
-public let daysago : Date! = persianCalander.date(byAdding: .day, value: -3, to: Date())
-public let monthsago : Date! = persianCalander.date(byAdding: .month, value: -2, to: Date())
-public let yearsago  : Date! = persianCalander.date(byAdding: .year, value: -5, to: Date())
+public let daysago : Date = persianCalander.date(byAdding: .day, value: -3, to: Date())!
+public let monthsago : Date = persianCalander.date(byAdding: .month, value: -2, to: Date())!
+public let yearsago  : Date = persianCalander.date(byAdding: .year, value: -5, to: Date())!
 
 public let persianDateFormatter : DateFormatter = {
     var formatter = DateFormatter()

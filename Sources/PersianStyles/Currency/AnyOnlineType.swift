@@ -14,7 +14,7 @@ public struct AnyOnline<TYPE : UnitType>: OnlineUnit  {
     public static var id : UUID { .init()}
     
     
-    public let id : UUID
+    public let id : String
     
     private let convertToFunc : @Sendable (Double,Date) async throws -> Double
     private let convertFromFunc : @Sendable (Double,Date) async throws -> Double

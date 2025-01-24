@@ -13,7 +13,7 @@ public struct AnyOffline<TYPE : UnitType>: OfflineUnit  {
     
     
     
-    public let id : UUID 
+    public let id : String
     
     private let convertToFunc : @Sendable (Double) -> Double
     private let convertFromFunc : @Sendable (Double) -> Double
@@ -36,7 +36,7 @@ public struct AnyOffline<TYPE : UnitType>: OfflineUnit  {
     public var longSymbol: String
     
     public init<Money : OfflineUnit>(_ currency : Money) where Money.CalcType == Offline  , Money.TypeUnit == TYPE{
-        self.id = currency.id
+        
         self.convertToFunc = { double in
             currency.convertToReferance(double)
         }
@@ -45,6 +45,7 @@ public struct AnyOffline<TYPE : UnitType>: OfflineUnit  {
         }
         self.shortSymbol = currency.shortSymbol
         self.longSymbol = currency.longSymbol
+        self.id = currency.longSymbol
     }
 }
 public extension AnyOffline {

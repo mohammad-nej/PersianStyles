@@ -11,7 +11,7 @@ import Foundation
 
 public protocol Unit : Sendable , Equatable , Identifiable , Hashable {
     
-    static var id : UUID { get }
+    
     
     associatedtype TypeUnit : UnitType
     associatedtype CalcType : CalculationType
@@ -20,14 +20,14 @@ public protocol Unit : Sendable , Equatable , Identifiable , Hashable {
 
 }
 extension Unit {
-    public var id : UUID {
-        Self.id
+    public var id : String {
+        longSymbol
     }
     
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        type(of: lhs).id == type(of: rhs).id
+        lhs.id == rhs.id
     }
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(Self.id)
+        hasher.combine(id)
     }
 }
