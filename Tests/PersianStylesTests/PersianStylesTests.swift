@@ -1,4 +1,5 @@
 import Testing
+import Foundation
 @testable import PersianStyles
 
 @Test func currencyCovnerter() async throws {
@@ -55,4 +56,19 @@ import Testing
     #expect(currencies[0] != currencies[1])
     #expect(currencies[1] == currencies[1])
     #expect(currencies[0] == currencies[0])
+}
+
+@Test func dateTests() async throws {
+    let date = DateComponents(calendar:persianCalander,year:1403,month:11,day:30,hour:17).date!
+    #expect(date.isIn(11) == true)
+    
+    let firstOfShahrivar = DateComponents(calendar:persianCalander,year:1403,month:6,day:1).date!
+    let lastOfBahman = DateComponents(calendar:persianCalander,year:1403,month:12,day:1).date!
+    
+    let isInSameDay = persianCalander.isDate(firstOfShahrivar, inSameDayAs: PersianMonths.shahrivar.startDate)
+    #expect(isInSameDay)
+    
+    let isInSameDay2 = persianCalander.isDate(lastOfBahman, inSameDayAs: PersianMonths.bahman.endDate)
+    #expect(isInSameDay2)
+    
 }
