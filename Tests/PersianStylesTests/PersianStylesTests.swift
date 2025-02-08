@@ -1,11 +1,11 @@
 import Testing
 import Foundation
-@testable import PersianStyles
+ import PersianStyles
 
 @Test func currencyCovnerter() async throws {
     // Write your test here and use APIs like `#expect(...)` to check expected conditions.
     
-    let manager = Converter()
+    let manager = Converter(type: Currency.self)
     
     let notEffect =  try await manager.convert(8450_000,from: .dollar, to : .dollar , in: .now)
     #expect(notEffect == 8450_000)
@@ -71,4 +71,42 @@ import Foundation
     let isInSameDay2 = persianCalander.isDate(lastOfBahman, inSameDayAs: PersianMonths.bahman.endDate)
     #expect(isInSameDay2)
     
+}
+
+
+
+@Test func dataBaseSimulation() async throws {
+    
+    let pallet = SerializedUnit(name: "Pallet", typeName: Numerable.name, ratio: 40, shortSymbol: "pallet", longSymbol: "Pallet")
+    let pallet2 = SerializedUnit(name: "Pallet2", typeName: Numerable.name, ratio: 20, shortSymbol: "pallet2", longSymbol: "Pallet2")
+    let kilo = KiloGram().serializedUnit
+    
+    let converter2 = Converter(type: Numerable.self)
+    
+    let converter = ConverterBuilder.NumberableConverter()
+    
+    let converted = try  converter.convert(80, from: .one, to: pallet)
+    #expect(converted == 2)
+    
+    #expect(throws: (any Error).self){
+        try  converter.convert(86, from: .one, to: kilo)
+        
+    }
+    
+    //this line will produce compile-time error
+    //let converted = try  converter.convert(86, from: .kg, to: pallet)
+    
+    let convertToSmallerPallet = try 1.convert(pallet, to: pallet2)
+    #expect(convertToSmallerPallet == 2)
+    
+    
+    #expect(throws: (any Error).self){
+        let converted = try  converter.convert(86, from: kilo, to: pallet)
+        print(converted)
+    }
+
+    let converted2 = try converter2.convert(1, from: pallet, to: pallet2)
+    #expect(converted2 == 2)
+    let converted3 = try converter2.convert(1, from: pallet2, to: .one)
+    #expect(converted3 == 20.0)
 }

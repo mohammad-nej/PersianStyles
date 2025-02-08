@@ -7,14 +7,21 @@
 
 public protocol UnitType : Sendable , Equatable {
     associatedtype ReferenceUnit
+    static var name : String { get}
+    init()
+   
 }
 
-public enum Lenght: UnitType {
+public struct Lenght: UnitType {
     public typealias ReferenceUnit = Centimeter
+    public init(){}
+    public static let name = "Lenght"
 }
 
-public enum Currency : UnitType {
+public struct Currency : UnitType {
     public typealias ReferenceUnit = Riyal
+    public init(){}
+    public static let name = "Currency"
 }
 
 public extension UnitType {

@@ -5,29 +5,25 @@
 //  Created by MohammavDev on 1/16/25.
 //
 import Foundation
-public struct Meter : OfflineUnit {
+public struct Meter : OfflineUnit, Codable, SerializableUnit {
+    public var ratio: Double = 100
+    
     
     public static let id: UUID = UUID()
     
     public init(){
-        
+        shortSymbol = "m"
+        longSymbol = "meter"
     }
     
-    public   func convertToReferance(_ amount: Double) -> Double {
-        return amount * 100
-    }
-    
-    public   func convertFromReferance(_ amount: Double) -> Double {
-        return amount / 100
-    }
-    
+  
     public typealias TypeUnit = Lenght
     
     
     
-    public   let shortSymbol: String = "m"
+    public   var shortSymbol: String
     
-    public   let longSymbol: String = "meter"
+    public   var longSymbol: String
     
 }
 public extension OfflineUnit where Self == Meter {

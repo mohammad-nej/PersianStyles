@@ -11,14 +11,16 @@ import Foundation
 public struct Converter<Referance : UnitType>  : Sendable{
     
     
+    let currentType : Referance.Type
     
-    
-    public init(type: Referance.Type = Currency.self) {
+    public init(type: Referance.Type) {
         
-        
+        self.currentType = type
     }
     
-    func convert<From : OnlineUnit, To : OnlineUnit>(_ amount : any DoubleProducer ,
+}
+public extension Converter{
+     func convert<From : OnlineUnit, To : OnlineUnit>(_ amount : any DoubleProducer ,
                                                              from sourceCurrency : From ,
                                                              to destinationCurrency : To ,
                                                  in date : Date = .now) async throws  -> Double

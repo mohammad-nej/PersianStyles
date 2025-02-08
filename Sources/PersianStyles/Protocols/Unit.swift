@@ -9,9 +9,7 @@
 import SwiftUI
 import Foundation
 
-public protocol Unit : Sendable , Equatable , Identifiable , Hashable {
-    
-    
+public protocol Unit : Sendable ,Equatable , Identifiable , Hashable {
     
     associatedtype TypeUnit : UnitType
     associatedtype CalcType : CalculationType

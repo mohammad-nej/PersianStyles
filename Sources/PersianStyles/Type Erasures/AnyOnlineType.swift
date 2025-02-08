@@ -6,26 +6,39 @@
 //
 import Foundation
 
+public enum CodingError : Error {
+    case shouldntLoadFromCoding
+}
 
 public typealias AnyOnlineCurrency = AnyOnline<Currency>
 
-public struct AnyOnline<TYPE : UnitType>: OnlineUnit  {
-  
+///Type eraser for putting types in a single array.
+/// - Warning: Despite confroming to `Codable` protocol, this type shouldn't be Encoded/Decoded cause it will wont work!
+public struct AnyOnline<TYPE : UnitType>: OnlineUnit   {
+
+
+    
     public static var id : UUID { .init()}
     
     
-    public let id : String
+    public var id : String = ""
     
-    private let convertToFunc : @Sendable (Double,Date) async throws -> Double
-    private let convertFromFunc : @Sendable (Double,Date) async throws -> Double
+    private var convertToFunc : @Sendable (Double,Date) async throws -> Double
+    private var convertFromFunc : @Sendable (Double,Date) async throws -> Double
     
     
     public func convertToReferance(_ amount: Double, in date: Date) async throws -> Double {
-        try await convertToFunc(amount,date)
+        return try await convertToFunc(amount,date)
     }
     
     public func convertFromReferance(_ amount: Double, in date: Date) async throws -> Double {
-        try await convertFromFunc(amount,date)
+
+        return try await convertFromFunc(amount,date)
+    }
+    
+    ///To sielnce swift Codable errors, this type shouldnt be Encoded/Decoded
+    private enum CodingKeys: String, CodingKey {
+           case shortSymbol, longSymbol
     }
     
     public typealias TypeUnit = TYPE

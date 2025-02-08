@@ -6,23 +6,27 @@
 //
 
 import Foundation
-public struct Centimeter : OfflineUnit {
+public struct Centimeter : CodableOfflineUnit {
+    public var ratio: Double = 1
+    
     public static let id: UUID = UUID()
-     public init(){
-        
+    public init(){
+        shortSymbol = "cm"
+        longSymbol = "centimeter"
     }
 
     public typealias TypeUnit = Lenght
     
     
     
-    public   let shortSymbol: String = "cm"
+    public   var shortSymbol: String
     
-    public   let longSymbol: String = "centimeter"
+    public   var longSymbol: String
 
+   
 }
 public extension OfflineUnit where Self == Centimeter {
-    static   var cm : Self {
+    static var cm : Self {
         return .init()
     }
 }

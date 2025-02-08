@@ -8,23 +8,25 @@ import Foundation
 
 public typealias AnyOfflineCurrency = AnyOffline<Currency>
 
+///a type-erasure for putting all your offline types in a single array.
+
 public struct AnyOffline<TYPE : UnitType>: OfflineUnit  {
     public static var id: UUID { .init()}
     
     
     
-    public let id : String
+    public var id : String = ""
     
-    private let convertToFunc : @Sendable (Double) -> Double
-    private let convertFromFunc : @Sendable (Double) -> Double
+    private var convertToFunc : @Sendable (Double) -> Double
+    private var convertFromFunc : @Sendable (Double) -> Double
     
     
     public func convertToReferance(_ amount: Double) -> Double {
-        convertToFunc(amount)
+        return convertToFunc(amount)
     }
     
     public func convertFromReferance(_ amount: Double) -> Double {
-        convertFromFunc(amount)
+        return convertFromFunc(amount)
     }
     
     public typealias TypeUnit = TYPE
@@ -34,6 +36,13 @@ public struct AnyOffline<TYPE : UnitType>: OfflineUnit  {
     public var shortSymbol: String
     
     public var longSymbol: String
+    
+    
+    ///To sielnce swift Codable errors, this type shouldnt be Encoded/Decoded
+    private enum CodingKeys: String, CodingKey {
+           case shortSymbol, longSymbol
+    }
+
     
     public init<Money : OfflineUnit>(_ currency : Money) where Money.CalcType == Offline  , Money.TypeUnit == TYPE{
         

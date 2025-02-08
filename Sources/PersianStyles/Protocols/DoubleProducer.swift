@@ -60,6 +60,27 @@ public extension DoubleProducer {
         return try await manager.convert(self.value, from: base, to: to)
       
     }
-    
-    
+    func convert<Unit: OfflineUnit>(_ base : Unit,to coded : SerializedUnit) throws -> Double {
+        let converter = Converter(type:Unit.TypeUnit.self)
+        return try converter.convert(self.value, from: base, to: coded)
+    }
+    func convert<Unit: OfflineUnit>(_ coded : SerializedUnit,to other : Unit) throws -> Double {
+        let converter = Converter(type:Unit.TypeUnit.self)
+        return try converter.convert(self.value, from: coded, to: other)
+    }
+    func convert(_ base : SerializedUnit , to destination : SerializedUnit) throws -> Double{
+        
+        let converter = DynamicConverter()
+        return try converter.convert(self.value, from: base, to: destination)
+    }
+}
+public extension DoubleProducer{
+    func convert<Unit: OnlineUnit>(_ base : Unit,to coded : SerializedUnit) async throws -> Double {
+        let converter = Converter(type:Unit.TypeUnit.self)
+        return try await converter.convert(self.value, from: base, to: coded)
+    }
+    func convert<Unit: OnlineUnit>(_ coded : SerializedUnit,to other : Unit) async throws -> Double {
+        let converter = Converter(type:Unit.TypeUnit.self)
+        return try await converter.convert(self.value, from: coded, to: other)
+    }
 }

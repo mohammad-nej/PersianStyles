@@ -12,7 +12,7 @@ public struct Dollar : Sendable,OnlineUnit  {
     
     public typealias TypeUnit = Currency
     
-     public init(){
+    public init(){
         
     }
     

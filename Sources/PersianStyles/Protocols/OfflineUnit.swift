@@ -9,20 +9,11 @@
 import SwiftUI
 import Foundation
 
-public protocol OfflineUnit : Sendable, Unit , Equatable , Identifiable where CalcType == Offline {
-     func convertToReferance(_ amount : Double) -> Double
+public protocol OfflineUnit : Sendable, Unit  ,Equatable ,Identifiable where CalcType == Offline {
+    ///Convert amounf from current Unit to Referance
+    func convertToReferance(_ amount : Double) -> Double
     
-    ///Convert your amount from Referance currency
+    ///Convert your amount from Referance unit to current unit
      func convertFromReferance(_ amount : Double) -> Double
 }
-public extension OfflineUnit  where Self == TypeUnit.ReferenceUnit {
-      func convertToReferance(_ amount : Double) -> Double {
-        return amount
-    }
-    
-    ///Convert your amount from Referance currency
-     func convertFromReferance(_ amount : Double) -> Double{
-        return amount
-    }
-    
-}
+

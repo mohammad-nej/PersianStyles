@@ -9,7 +9,9 @@
 import SwiftUI
 import Foundation
 
-public struct Riyal : Sendable,OfflineUnit {
+public struct Riyal : Sendable,OfflineUnit, SerializableUnit {
+    public var ratio: Double = 1
+    
   
     public static let id: UUID = UUID()
     
