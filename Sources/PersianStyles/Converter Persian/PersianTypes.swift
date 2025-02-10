@@ -5,32 +5,40 @@
 //  Created by MohammavDev on 2/8/25.
 //
 
-struct Joft : OfflineUnit, SerializableUnit , PersianTranslateable {
+public struct Joft : OfflineUnit, SerializableUnit , PersianTranslateable {
     
     
     
-    var ratio : Double = 2
+    public var ratio : Double = 2
     
     
-    typealias TypeUnit = Numerable
+    public typealias TypeUnit = Numerable
     
+    public init(){}
     
+    public var shortSymbol: String = "جفت"
     
-    var shortSymbol: String = "جفت"
+    public var longSymbol: String = "جفت"
     
-    var longSymbol: String = "جفت"
-    
-    var persianName = "جفت"
+    public var persianName = "جفت"
 }
-struct Adad : CodableOfflineUnit , PersianTranslateable {
+public struct Adad : CodableOfflineUnit , PersianTranslateable {
     
-    var ratio : Double = 1
+    public init() {}
     
-    typealias TypeUnit = Numerable
+    public var ratio : Double = 1
     
-    var shortSymbol: String = "عدد"
+    public typealias TypeUnit = Numerable
     
-    var longSymbol: String = "عدد"
+    public var shortSymbol: String = "عدد"
     
-    var persianName = "عدد"
+    public var longSymbol: String = "عدد"
+    
+    public var persianName = "عدد"
+}
+public extension OfflineUnit where Self == Adad {
+    static var adad : Adad { .init() }
+}
+public extension OfflineUnit where Self == Joft {
+    static var joft : Joft { .init() }
 }

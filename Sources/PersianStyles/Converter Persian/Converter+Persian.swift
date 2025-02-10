@@ -49,3 +49,13 @@ extension CubicCentimeter : PersianTranslateable {
 extension CubicMeter : PersianTranslateable {
     public var persianName: String {"متر مکعب"}
 }
+
+
+public extension SerializedUnit {
+    static var adad : SerializedUnit {
+        Adad().serializedUnit
+    }
+    static var joft : SerializedUnit {
+        Joft().serializedUnit
+    }
+}

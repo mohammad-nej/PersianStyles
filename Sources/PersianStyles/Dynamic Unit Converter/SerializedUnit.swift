@@ -18,10 +18,12 @@ public struct SerializedUnit : Sendable, Equatable,Hashable,Codable,Identifiable
     public let longSymbol : String
     
     public static func == (lhs: SerializedUnit, rhs: SerializedUnit) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.id == rhs.id && lhs.typeName == rhs.typeName && lhs.ratio == rhs.ratio
     }
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+        hasher.combine(typeName)
+        hasher.combine(ratio)
     }
     
     public init(name: String, typeName: String, ratio: Double, shortSymbol: String, longSymbol: String) {
@@ -35,3 +37,15 @@ public struct SerializedUnit : Sendable, Equatable,Hashable,Codable,Identifiable
 
 
 
+extension SerializedUnit : CustomStringConvertible {
+    public var description: String {
+        return name
+    }
+    
+    
+}
+public extension SerializedUnit {
+    static func custom(name : String , typeName : String ,ratio : Double) -> SerializedUnit {
+        return SerializedUnit(name: name, typeName: typeName, ratio: ratio, shortSymbol: name, longSymbol: name)
+    }
+}

@@ -34,3 +34,9 @@ public extension OfflineUnit where Self : SerializableUnit {
 
 }
 
+public extension OfflineUnit where Self : PersianTranslateable & SerializableUnit {
+    var persianSerializedUnit : SerializedUnit {
+        SerializedUnit(name: self.persianName , typeName: Self.TypeUnit.name, ratio: ratio, shortSymbol:shortSymbol , longSymbol: longSymbol)
+
+    }
+}

@@ -5,7 +5,9 @@
 //  Created by MohammavDev on 2/7/25.
 //
 
-public struct MiliLiter: OfflineUnit,SerializableUnit {
+public struct MiliLiter: CodableOfflineUnit , PersianTranslateable {
+    public var persianName: String { "میلی لیتر"}
+    
     public var ratio: Double = 0.000_001
     
     

@@ -5,4 +5,4 @@
 //  Created by MohammavDev on 2/8/25.
 //
 
-typealias CodableOfflineUnit = OfflineUnit & SerializableUnit
+public typealias CodableOfflineUnit = OfflineUnit & SerializableUnit
