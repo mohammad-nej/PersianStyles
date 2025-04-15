@@ -14,8 +14,8 @@ public struct ConverterBuilder : Sendable {
     public static func WeightConverter() -> Converter<Weight> {
         return Converter(type: Weight.self)
     }
-    public static func LengthConverter() -> Converter<Lenght> {
-        return Converter(type: Lenght.self)
+    public static func LengthConverter() -> Converter<Length> {
+        return Converter(type: Length.self)
     }
     public static func CurrencyConverter() -> Converter<Currency> {
         return Converter(type: Currency.self)

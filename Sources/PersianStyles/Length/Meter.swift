@@ -17,7 +17,7 @@ public struct Meter : OfflineUnit, Codable, SerializableUnit {
     }
     
   
-    public typealias TypeUnit = Lenght
+    public typealias TypeUnit = Length
     
     
     

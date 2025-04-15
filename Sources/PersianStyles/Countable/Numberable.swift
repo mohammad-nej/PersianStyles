@@ -11,7 +11,7 @@ public struct Numerable : UnitType {
     
     public typealias ReferenceUnit = OnePeice
     public init(){}
-    public static let name = "Numberable"
+    public static let name = "Numerable"
 }
 
 

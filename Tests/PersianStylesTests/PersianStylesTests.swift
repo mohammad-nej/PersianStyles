@@ -26,7 +26,7 @@ import Foundation
     
 }
 @Test func lengthConverter() async throws {
-    let converter = Converter(type: Lenght.self)
+    let converter = Converter(type: Length.self)
     
     let toMeter = converter.convert(100, from: .cm, to: .meter)
     

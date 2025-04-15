@@ -23,7 +23,7 @@ public enum CountingType : String , Sendable,Codable , CaseIterable {
         case .numberable:
             return Numerable()
         case .lenght:
-            return Lenght()
+            return Length()
         case .weight:
             return  Weight()
         case .volume:

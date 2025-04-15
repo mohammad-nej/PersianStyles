@@ -12,10 +12,10 @@ public protocol UnitType : Sendable , Equatable {
    
 }
 
-public struct Lenght: UnitType {
+public struct Length: UnitType {
     public typealias ReferenceUnit = Centimeter
     public init(){}
-    public static let name = "Lenght"
+    public static let name = "Length"
 }
 
 public struct Currency : UnitType {

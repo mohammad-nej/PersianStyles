@@ -15,7 +15,7 @@ public struct Centimeter : CodableOfflineUnit {
         longSymbol = "centimeter"
     }
 
-    public typealias TypeUnit = Lenght
+    public typealias TypeUnit = Length
     
     
     

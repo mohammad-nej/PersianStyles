@@ -19,7 +19,7 @@ public struct Kilometer : OfflineUnit, Codable,SerializableUnit {
     
   
     
-    public typealias TypeUnit = Lenght
+    public typealias TypeUnit = Length
     
     
     
