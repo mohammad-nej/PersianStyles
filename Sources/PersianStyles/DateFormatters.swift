@@ -8,7 +8,13 @@
 import Foundation
 
 
-
+public extension Calendar {
+    static var currentPersianYear : Int{
+      
+      return persianCalander.component(.year, from: Date())
+      
+  }
+}
 
 public let persianCalander : Calendar = {
     var calendar = Calendar(identifier: .persian)
@@ -17,6 +23,7 @@ public let persianCalander : Calendar = {
     return calendar
 }()
 
+///Formater with "yyyy/MM/dd - HH:mm:ss" format in perisan calendar and locale
 public let persianFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.calendar = persianCalander
@@ -41,6 +48,7 @@ public let persianDateFormatter : DateFormatter = {
     return formatter
 }()
 
+///Formatter with "MM/dd - HH:mm" format with persian calendar and locale
 public let fullDateFormatter : DateFormatter = {
     
     var formatter = DateFormatter()
@@ -53,10 +61,16 @@ public let fullDateFormatter : DateFormatter = {
 
 public extension Date {
     
+    ///Perisan year for this date
+    var persianYear : Int {
+        persianCalander.component(.year, from: self)
+    }
+    ///Formater with "yyyy/MM/dd - HH:mm:ss" format in perisan calendar and locale
     var  inPersionFormat : String {
         return persianFormatter.string(from: self)
     }
     
+    ///perisan standard format : yyyy/MM/dd
     var inPersianShortFormat : String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
@@ -69,11 +83,7 @@ public extension Date {
 
 public extension Date {
     
-      var currentYear : Int{
-        
-        return persianCalander.component(.year, from: Date())
-        
-    }
+   
     
     func randomizeDailyHours(calendar : Calendar = persianCalander) -> Date {
         var resultDate : Date
@@ -99,27 +109,18 @@ public extension Date {
 }
 public extension Date {
     
-      var thisYearRange : ClosedRange<Date> {
-        let dateRange: ClosedRange<Date> = {
+      var thisYearRange : Range<Date> {
+        let dateRange: Range<Date> = {
             let calendar = persianCalander
-            let currentYear = calendar.dateComponents([.year], from: Date())
-            let year = currentYear.year!
             
-            var startComponents = DateComponents(year: year, month: 1, day: 1)
+            let year = self.persianYear
             
-            startComponents.calendar  = calendar
+            let startComponents = DateComponents(calendar: calendar,year: year, month: 1, day: 1)
+            let endComponents = DateComponents(calendar:calendar,year: year + 1, month: 1, day: 1, hour: 0, minute: 0, second: 0)
+        
+            let endDate = endComponents.date!
             
-            var endComponents = DateComponents(year: year + 1, month: 1, day: 1, hour: 0, minute: 0, second: 0)
-             endComponents.calendar  = calendar
-            var date = endComponents.date!
-            
-            date = persianCalander.date(byAdding: .second, value: -1, to: date)!
-
-            endComponents = calendar.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
-            
-            endComponents.calendar  = calendar
-            
-            let range = startComponents.date!...Date()
+            let range = startComponents.date!..<endDate
             
             return range
                 

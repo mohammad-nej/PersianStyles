@@ -6,7 +6,7 @@
 //
 
 public extension Converter {
-    public func convert<T : OfflineUnit>(_ amount : DoubleProducer , from baseUnit : T , to unkonwnUnit : SerializedUnit) throws -> Double where T.TypeUnit == Referance {
+    func convert<T : OfflineUnit>(_ amount : DoubleProducer , from baseUnit : T , to unkonwnUnit : SerializedUnit) throws -> Double where T.TypeUnit == Referance {
         
         guard Referance.name == unkonwnUnit.typeName else {
             throw TypeErrors.unmatchingUnits(Referance.name,unkonwnUnit.typeName)
@@ -37,7 +37,7 @@ public extension Converter {
     }
 
     
-    public func convert(_ amount : DoubleProducer , from base : SerializedUnit, to destination : SerializedUnit) throws -> Double  {
+    func convert(_ amount : DoubleProducer , from base : SerializedUnit, to destination : SerializedUnit) throws -> Double  {
         guard base.typeName == destination.typeName else {
              throw TypeErrors.unmatchingUnits(base.typeName,destination.typeName)
         }
@@ -57,7 +57,7 @@ public extension Converter {
         return self.convert(amount, from: dynamicUnit, to: otherUnit)
         
     }
-    public func convert<T : OnlineUnit>(_ amount : DoubleProducer ,from unkonwnUnit : SerializedUnit, to otherUnit : T) async throws -> Double where T.TypeUnit == Referance {
+    func convert<T : OnlineUnit>(_ amount : DoubleProducer ,from unkonwnUnit : SerializedUnit, to otherUnit : T) async throws -> Double where T.TypeUnit == Referance {
         
         guard Referance.name == unkonwnUnit.typeName else {
             throw TypeErrors.unmatchingUnits(Referance.name,unkonwnUnit.typeName)

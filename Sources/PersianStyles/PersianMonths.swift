@@ -38,30 +38,32 @@ public enum PersianMonths : String ,Sendable,Equatable, CaseIterable, Identifiab
         guard let chosen else { return nil }
         self = chosen
     }
-    public var monthRange : Range<Date> {
-        let startDate = persianCalander.date(bySetting: .month, value: self.number, of: Date())!
-        let daysInMonth = persianCalander.range(of: .day, in: .month, for: startDate)
+    public func monthRange(for date : Date) -> Range<Date> {
+        let currentYear = date.persianYear
+        
+        let startOfMonth = DateComponents(calendar:persianCalander, year : currentYear , month : self.number , day: 1, hour:2 ).date!
+        let daysInMonth = persianCalander.range(of: .day, in: .month, for: startOfMonth)
         
         //this referes to the day after the end of month
-        let endMonthDate = persianCalander.date(byAdding: .day, value: daysInMonth!.count , to: startDate)!
+        let endMonthDate = persianCalander.date(byAdding: .day, value: daysInMonth!.count , to: startOfMonth)!
         
-        return startDate..<endMonthDate
+        return startOfMonth..<endMonthDate
         
         
     }
     
     
-    public var daysRange : Range<Int> {
-       persianCalander.range(of: .day, in: .month, for: self.startDate)!
+    public func daysRange(for date : Date ) -> Range<Int> {
+        persianCalander.range(of: .day, in: .month, for: self.startDate(for: date))!
     }
  
-    public var startDate : Date {
-        Date().startOf(self)
+    public func startDate(for date : Date = .now) -> Date {
+        date.startOf(self)
     }
     
     /// - Warning: Beware that endOf month actualy returns the startOf(nextMonth) and you should always compare it like `date < endOf(month)`
-    public var endDate : Date{
-        Date().endOf(self)
+    public func endDate(for date : Date = .now) -> Date{
+        date.endOf(self)
     }
     public var number : Int {
         switch self {
@@ -100,10 +102,14 @@ public extension PersianMonths{
 }
 public extension Date {
      func isIn(_ persianMonth: PersianMonths) -> Bool {
-        return persianMonth.monthRange.contains(self)
+         
+//         let month = persianMonth.number
+        
+         return persianMonth.monthRange(for: self).contains(self)
     }
     func startOf(_ persianMonth:PersianMonths) -> Date {
-        let startDate = DateComponents(calendar:persianCalander,year: self.currentYear,month:persianMonth.number,day: 1).date!
+        let year = self.persianYear
+        let startDate = DateComponents(calendar:persianCalander,year: year,month:persianMonth.number,day: 1).date!
         return startDate
     }
     var nextPersianDay : Date {
@@ -115,7 +121,7 @@ public extension Date {
     func endOf(_ persianMonth:PersianMonths) -> Date {
         if persianMonth == .esfand {
             let nextMonth = PersianMonths(number: 1)!
-            let year = self.currentYear + 1
+            let year = persianCalander.component(.year, from: self)
             let date = DateComponents(calendar: persianCalander, year: year, month: nextMonth.number,day: 1).date
             return date!
         }else{

@@ -22,7 +22,7 @@ public struct Dollar : Sendable,OnlineUnit  {
     }
     
     ///convert Riyal to Dollar
-    public   func convertFromReferance(_ amount: Double, in date: Date) async throws -> Double {
+    public  func convertFromReferance(_ amount: Double, in date: Date) async throws -> Double {
         return try await amount / getRate(at: date)
     }
     

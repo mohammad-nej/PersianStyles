@@ -51,14 +51,16 @@ public extension OfflineUnit where Self == Grouped {
      static func grouped(_ peiceInEach: Double) -> Self {
         Grouped(shortSymbol: "", longSymbol: "", ratio: peiceInEach)
     }
+    
+    static var pair : Self {
+        Grouped(shortSymbol: "pair", longSymbol: "pair",ratio: 2)
+    }
 }
 public extension OfflineUnit where Self == OnePeice {
     static var one : Self {
         OnePeice(shortSymbol: "one", longSymbol: "one")
     }
  
-    static var pair : Self {
-        OnePeice(shortSymbol: "pair", longSymbol: "pair")
-    }
+    
 }
 

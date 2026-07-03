@@ -60,19 +60,38 @@ import Foundation
 
 @Test func dateTests() async throws {
     let date = DateComponents(calendar:persianCalander,year:1403,month:11,day:30,hour:17).date!
-    #expect(date.isIn(11) == true)
+    let isIn11 = date.isIn(11)
+    
+    #expect(isIn11)
     
     let firstOfShahrivar = DateComponents(calendar:persianCalander,year:1403,month:6,day:1).date!
     let lastOfBahman = DateComponents(calendar:persianCalander,year:1403,month:12,day:1).date!
     
-    let isInSameDay = persianCalander.isDate(firstOfShahrivar, inSameDayAs: PersianMonths.shahrivar.startDate)
+    let isInSameDay = persianCalander.isDate(firstOfShahrivar, inSameDayAs: PersianMonths.shahrivar.startDate(for: firstOfShahrivar))
     #expect(isInSameDay)
     
-    let isInSameDay2 = persianCalander.isDate(lastOfBahman, inSameDayAs: PersianMonths.bahman.endDate)
+    let isInSameDay2 = persianCalander.isDate(lastOfBahman, inSameDayAs: PersianMonths.bahman.endDate(for: lastOfBahman))
     #expect(isInSameDay2)
+    
+    
     
 }
 
+@Test("Testing Date.thisYearRange")
+func testThisYearRaange() {
+    
+    let date = DateComponents(calendar:persianCalander, year : 1405, month:2,day:3).date!
+    
+    let range = date.thisYearRange
+    
+    var startDate = DateComponents(calendar:persianCalander, year : 1405, month:1,day:1).date!
+    startDate = persianCalander.startOfDay(for: startDate)
+    
+    #expect(startDate == range.lowerBound)
+    
+    let endDate = DateComponents(calendar:persianCalander, year : 1406, month:1,day:1).date!
+    #expect(endDate == range.upperBound)
+}
 
 
 @Test func dataBaseSimulation() async throws {
